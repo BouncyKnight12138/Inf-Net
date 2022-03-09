@@ -117,7 +117,7 @@ if __name__ == '__main__':
                         help='change different backbone, choice: VGGNet16, ResNet50, Res2Net50')
     # training dataset
     parser.add_argument('--train_path', type=str,
-                        default='./Dataset/TrainingSet/LungInfection-Train/Doctor-label')
+                        default='../COVID-SemiSeg/Dataset/TrainingSet/LungInfection-Train/Doctor-label')
     parser.add_argument('--is_semi', type=bool, default=False,
                         help='if True, you will turn on the mode of `Semi-Inf-Net`')
     parser.add_argument('--is_pseudo', type=bool, default=False,
@@ -150,6 +150,8 @@ if __name__ == '__main__':
         model.load_state_dict(torch.load('./Snapshots/save_weights/Inf-Net_Pseduo/Inf-Net_pseudo_100.pth'))
     else:
         print('Not loading weights from weights file')
+
+    print(opt.is_pseudo,opt.is_semi)
 
     # weights file save path
     if opt.is_pseudo and (not opt.is_semi):
@@ -191,4 +193,5 @@ if __name__ == '__main__':
 
     for epoch in range(1, opt.epoch):
         adjust_lr(optimizer, opt.lr, epoch, opt.decay_rate, opt.decay_epoch)
+        print(train_save)
         train(train_loader, model, optimizer, epoch, train_save)
