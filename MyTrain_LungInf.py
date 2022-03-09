@@ -92,7 +92,7 @@ if __name__ == '__main__':
                         help='epoch number')
     parser.add_argument('--lr', type=float, default=1e-4,
                         help='learning rate')
-    parser.add_argument('--batchsize', type=int, default=24,
+    parser.add_argument('--batchsize', type=int, default=6,
                         help='training batch size')
     parser.add_argument('--trainsize', type=int, default=352,
                         help='set the size of training sample')

@@ -160,10 +160,10 @@ class Inf_Net(nn.Module):
         lateral_edge = self.edge_conv4(edge_guidance)   # NOTES: Sup-2 (bs, 1, 88, 88) -> (bs, 1, 352, 352)
         lateral_edge = F.interpolate(lateral_edge,
                                      scale_factor=2,
-                                     mode='bilinear')
+                                     mode='bilinear')#se
 
         # ---- global guidance ----
-        ra5_feat = self.ParDec(x4_rfb, x3_rfb, x2_rfb)
+        ra5_feat = self.ParDec(x4_rfb, x3_rfb, x2_rfb)#sg
         lateral_map_5 = F.interpolate(ra5_feat,
                                       scale_factor=4,
                                       mode='bilinear')    # NOTES: Sup-1 (bs, 1, 44, 44) -> (bs, 1, 352, 352)
